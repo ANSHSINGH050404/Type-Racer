@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -n next,party -c cyan,magenta \"next dev\" \"partykit dev\"",
+    "dev": "concurrently -n next,worker -c cyan,magenta \"next dev\" \"npm run dev:worker\"",
     "dev:next": "next dev",
-    "dev:party": "partykit dev",
+    "dev:worker": "wrangler dev -c worker/wrangler.toml --port 8787",
+    "dev:party": "npm run dev:worker",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "ci": "npm run lint && npm run typecheck && npm run build",
-    "deploy:party": "partykit deploy"
+    "deploy:worker": "wrangler deploy -c worker/wrangler.toml",
+    "deploy:party": "npm run deploy:worker"
   },
   "dependencies": {
     "nanoid": "^6.0.0",
@@ -21,6 +23,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260718.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -30,6 +33,7 @@
     "eslint-config-next": "16.2.10",
     "partykit": "^0.0.115",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.112.0"
   }
 }

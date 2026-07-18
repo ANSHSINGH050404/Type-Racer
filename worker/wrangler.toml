@@ -1,0 +1,15 @@
+name = "type-racer-room"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+[[durable_objects.bindings]]
+name = "RACE_ROOM"
+class_name = "RaceRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RaceRoom"]
+
+[vars]
+# Used only for logging; room ids come from the URL path
+APP_NAME = "type-racer"
